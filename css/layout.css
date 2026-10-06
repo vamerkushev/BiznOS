@@ -1,0 +1,90 @@
+.app {
+    min-height: 100vh;
+}
+
+.topbar {
+    height: 72px;
+    background: rgba(255, 255, 255, .9);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 36px;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    backdrop-filter: blur(12px);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    font-weight: 800;
+    font-size: 19px;
+}
+
+.brand-mark {
+    width: 32px;
+    height: 32px;
+    border-radius: 9px;
+    display: grid;
+    place-items: center;
+    background: var(--accent);
+    color: white;
+    font-weight: 900;
+}
+
+.top-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.layout {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 34px;
+    display: grid;
+    grid-template-columns: 330px 1fr;
+    gap: 28px;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.main {
+    min-width: 0;
+}
+
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 24px;
+    gap: 20px;
+}
+
+.eyebrow {
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: .09em;
+    font-size: 11px;
+    font-weight: 900;
+    margin-bottom: 7px;
+}
+
+h1 {
+    font-size: clamp(28px, 4vw, 42px);
+    letter-spacing: -.04em;
+    margin: 0 0 7px;
+    line-height: 1;
+}
+
+.hero p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+}

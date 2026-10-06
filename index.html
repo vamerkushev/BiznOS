@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>БизнОС — Smart Business Calculator</title>
+
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+<div class="app">
+
+    <header class="topbar">
+        <div class="brand">
+            <div class="brand-mark">Б</div>
+            БизнОС
+        </div>
+
+        <div class="top-actions">
+            <button class="btn btn-secondary" id="resetBtn">Сбросить</button>
+            <button class="btn btn-primary" id="calculateTop">Обновить расчёт</button>
+        </div>
+    </header>
+
+    <div class="layout">
+
+        <aside class="sidebar">
+
+            <section class="panel input-panel">
+                <div class="panel-title">Данные бизнеса</div>
+                <div class="panel-subtitle">
+                    Введите основные показатели или загрузите таблицу — система рассчитает показатели автоматически.
+                </div>
+
+                <div class="section-label">Общие данные</div>
+
+                <div class="field">
+                    <label>Тип бизнеса</label>
+                    <select id="businessType">
+                        <option>Услуги</option>
+                        <option>Розничная торговля</option>
+                        <option>Производство</option>
+                        <option>E-commerce</option>
+                        <option>IT / Digital</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label>Количество клиентов <span>шт.</span></label>
+                    <input id="clients" type="number" value="184" min="0">
+                </div>
+
+                <div class="field">
+                    <label>Количество сотрудников <span>чел.</span></label>
+                    <input id="employees" type="number" value="12" min="0">
+                </div>
+
+                <div class="section-label">Финансы</div>
+
+                <div class="field">
+                    <label>Выручка <span>₽ / месяц</span></label>
+                    <input id="revenue" type="number" value="4850000" min="0">
+                </div>
+
+                <div class="field">
+                    <label>Расходы <span>₽ / месяц</span></label>
+                    <input id="expenses" type="number" value="3420000" min="0">
+                </div>
+
+                <div class="field">
+                    <label>Инвестиции <span>₽</span></label>
+                    <input id="investments" type="number" value="3400000" min="0">
+                </div>
+
+                <div class="section-label">Продажи</div>
+
+                <div class="field">
+                    <label>Количество заказов <span>шт. / месяц</span></label>
+                    <input id="orders" type="number" value="327" min="0">
+                </div>
+
+                <div class="field">
+                    <label>Затраты на маркетинг <span>₽ / месяц</span></label>
+                    <input id="marketing" type="number" value="280000" min="0">
+                </div>
+
+                <button class="btn btn-primary" id="calculateBtn" style="width:100%; margin-top:8px;">
+                    Рассчитать бизнес
+                </button>
+            </section>
+
+            <section class="panel input-panel">
+                <div class="panel-title">Импорт данных</div>
+                <div class="panel-subtitle">
+                    Загрузите CSV-файл. В реальной версии AI будет извлекать показатели из Excel, PDF и других документов.
+                </div>
+
+                <label class="upload" for="fileInput">
+                    <div class="upload-icon">↑</div>
+                    <strong>Загрузить таблицу</strong>
+                    <small>CSV — для демонстрационного прототипа</small>
+                </label>
+
+                <input id="fileInput" class="file-input" type="file" accept=".csv,.txt">
+            </section>
+
+        </aside>
+
+
+        <main class="main">
+
+            <div class="hero">
+                <div>
+                    <div class="eyebrow">Smart Business Analytics</div>
+                    <h1>Ваш бизнес в цифрах</h1>
+                    <p id="periodText">Анализ текущих показателей и ключевых точек роста</p>
+                </div>
+
+                <div class="health">
+                    <div class="health-top">
+                        <span class="health-title">Финансовое здоровье</span>
+                        <span class="health-value" id="healthValue">82/100</span>
+                    </div>
+                    <div class="health-bar">
+                        <div class="health-fill" id="healthFill"></div>
+                    </div>
+                </div>
+            </div>
+
+
+            <section class="metrics">
+                <div class="metric">
+                    <div class="metric-label">Выручка</div>
+                    <div class="metric-value" id="mRevenue">4,85 млн ₽</div>
+                    <div class="metric-change positive">↑ 12,4% к прошлому периоду</div>
+                </div>
+
+                <div class="metric">
+                    <div class="metric-label">Прибыль</div>
+                    <div class="metric-value" id="mProfit">1,43 млн ₽</div>
+                    <div class="metric-change positive">↑ 8,7%</div>
+                </div>
+
+                <div class="metric">
+                    <div class="metric-label">Маржинальность</div>
+                    <div class="metric-value" id="mMargin">29,5%</div>
+                    <div class="metric-change positive">Хороший уровень</div>
+                </div>
+
+                <div class="metric">
+                    <div class="metric-label">ROI</div>
+                    <div class="metric-value" id="mROI">42,1%</div>
+                    <div class="metric-change positive">Эффективные инвестиции</div>
+                </div>
+
+                <div class="metric">
+                    <div class="metric-label">Средний чек</div>
+                    <div class="metric-value" id="mCheck">14 832 ₽</div>
+                    <div class="metric-change">на один заказ</div>
+                </div>
+
+                <div class="metric">
+                    <div class="metric-label">CAC</div>
+                    <div class="metric-value" id="mCAC">1 522 ₽</div>
+                    <div class="metric-change positive">Стоимость клиента</div>
+                </div>
+
+                <div class="metric">
+                    <div class="metric-label">Прибыль / клиент</div>
+                    <div class="metric-value" id="mProfitClient">7 772 ₽</div>
+                    <div class="metric-change positive">Высокая эффективность</div>
+                </div>
+
+                <div class="metric">
+                    <div class="metric-label">Точка безубыточности</div>
+                    <div class="metric-value" id="mBreakEven">2,31 млн ₽</div>
+                    <div class="metric-change positive">Запас прочности высокий</div>
+                </div>
+            </section>
+
+
+            <section class="middle-grid">
+
+                <div class="chart-card">
+                    <div class="card-heading">
+                        <div>
+                            <h2>Динамика выручки</h2>
+                            <span>Последние 6 месяцев</span>
+                        </div>
+                        <span id="chartCurrent">4,85 млн ₽</span>
+                    </div>
+
+                    <div class="chart">
+                        <div class="chart-grid">
+                            <div class="grid-line"></div>
+                            <div class="grid-line"></div>
+                            <div class="grid-line"></div>
+                            <div class="grid-line"></div>
+                            <div class="grid-line"></div>
+                        </div>
+
+                        <svg class="chart-svg" viewBox="0 0 700 250" preserveAspectRatio="none">
+                            <defs>
+                                <linearGradient id="areaGradient" x1="0" x2="0" y1="0" y2="1">
+                                    <stop offset="0%" stop-color="#635bff" stop-opacity=".22"/>
+                                    <stop offset="100%" stop-color="#635bff" stop-opacity="0"/>
+                                </linearGradient>
+                            </defs>
+
+                            <path id="areaPath" d="" fill="url(#areaGradient)"/>
+
+                            <polyline id="linePath"
+                                      points=""
+                                      fill="none"
+                                      stroke="#635bff"
+                                      stroke-width="4"
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"/>
+
+                            <g id="chartCircles" fill="#635bff"></g>
+                        </svg>
+                    </div>
+
+                    <div class="chart-labels">
+                        <span>Май</span><span>Июнь</span><span>Июль</span>
+                        <span>Авг.</span><span>Сент.</span><span>Окт.</span>
+                    </div>
+                </div>
+
+
+                <div class="ai-card">
+                    <div class="card-heading">
+                        <h2>AI-анализ бизнеса</h2>
+                        <div class="ai-badge">✦</div>
+                    </div>
+
+                    <div class="ai-intro" id="aiIntro">
+                        Бизнес показывает хорошую финансовую устойчивость. Основная зона роста — эффективность привлечения клиентов.
+                    </div>
+
+                    <div id="insights"></div>
+                </div>
+
+            </section>
+
+
+            <section class="bottom-grid">
+
+                <div class="table-card">
+                    <div class="card-heading">
+                        <div>
+                            <h2>Структура бизнеса</h2>
+                            <span>Ключевые показатели</span>
+                        </div>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Показатель</th>
+                                <th>Значение</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Клиенты</td><td id="tClients">184</td></tr>
+                            <tr><td>Заказы</td><td id="tOrders">327</td></tr>
+                            <tr><td>Сотрудники</td><td id="tEmployees">12</td></tr>
+                            <tr><td>Выручка / сотрудника</td><td id="tRevenueEmployee">404 167 ₽</td></tr>
+                            <tr><td>Расходы / клиента</td><td id="tExpenseClient">18 587 ₽</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <div class="break-card">
+                    <div class="card-heading">
+                        <div>
+                            <h2>Запас финансовой прочности</h2>
+                            <span>До точки безубыточности</span>
+                        </div>
+                    </div>
+
+                    <div style="font-size:31px; font-weight:850; letter-spacing:-.04em;" id="safetyValue">
+                        +2,54 млн ₽
+                    </div>
+
+                    <div class="progress">
+                        <div class="progress-row">
+                            <span>Текущая выручка</span>
+                            <strong id="currentRevenueProgress">4,85 млн ₽</strong>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                    </div>
+
+                    <div class="recommendation">
+                        <div class="recommendation-title">РЕКОМЕНДАЦИЯ</div>
+                        <p id="recommendationText">
+                            Бизнес имеет хороший запас прочности. Следующая цель — увеличить прибыль без пропорционального роста расходов.
+                        </p>
+                    </div>
+                </div>
+
+            </section>
+
+        </main>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+</div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
