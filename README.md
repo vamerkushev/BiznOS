@@ -21,3 +21,6 @@
 cd biznos
 python -m http.server 8000
 # открыть http://localhost:8000
+```
+
+<img width="1126" height="824" alt="image" src="https://github.com/user-attachments/assets/e5c60a28-7a3b-4122-a8ef-4bdffdfd28e4" />
